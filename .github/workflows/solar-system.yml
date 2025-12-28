@@ -85,8 +85,9 @@ jobs:
         - name: Docker build and push
           uses: docker/build-push-action@v6
           with:
+            context: .
             push: true
-            image: ghcr.io/${{ github.actor }}/solar-system:${{ github.sha }}
+            tag: ghcr.io/${{ github.actor }}/solar-system:${{ github.sha }}
 
 
 
