@@ -70,7 +70,7 @@ jobs:
 
     docker:
       runs-on: ubuntu-latest
-      needs: ['unit-testing', 'code-coverage']
+      needs: [unit-testing, code-coverage]
       steps:
         - name: Checkout Repo
           uses: actions/checkout@v4
@@ -79,7 +79,7 @@ jobs:
           uses: docker/login-action@v3
           with:
             registry: ghcr.io
-            username: ${{ github.actor }}
+            username: ${{ github.repository_owner }}
             password: ${{ secrets.GITHUB_TOKEN }}
 
         - name: Docker build and push
@@ -87,7 +87,7 @@ jobs:
           with:
             context: .
             push: true
-            tag: ghcr.io/${{ github.actor }}/solar-system:${{ github.sha }}
+            tags: 'ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}'
 
 
 
